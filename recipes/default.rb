@@ -26,36 +26,57 @@ execute 'install filebeat' do
 end
 
 #MOVE FILES
-execute 'copy filebeat directory' do
- action :run
- command 'cp -f /tmp/chef-repo/cookbooks/dl-osquery/files/filebeat/ /etc/filebeat 2>/dev/null'
-end
-
-execute 'copy osquery directory' do
- action :run
- command 'cp -f /tmp/chef-repo/cookbooks/dl-osquery/files/osquery-conf/ /etc/osquery 2>/dev/null'
-end
-
-cookbook_file '/etc/logrotate.d/osquery' do
-  source 'osquery'
+directory '/etc/osquery' do
   owner 'root'
   group 'root'
-  mode '0644'
+  mode '0755'
   action :create
 end
 
-cookbook_file '/etc/rsyslog.d/osquery_syslog.conf' do
-  source 'osquery_syslog.conf'
+directory '/etc/osquery/DarkLightPacks' do
   owner 'root'
   group 'root'
-  mode '0644'
+  mode '0755'
   action :create
 end
+
+directory '/etc/filebeat' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+#/etc/osquery
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/osquery.flags > /etc/osquery/osquery.flags)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/osquery.conf > /etc/osquery/osquery.conf)
+execute(#/etc/osquery/DarkLightPacks
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/fim.conf > /etc/osquery/DarkLightPacks/fim.conf)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/incident-response.ctci.conf > /etc/osquery/DarkLightPacks/incident-response.ctci.conf)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/it-compliance.conf > /etc/osquery/DarkLightPacks/it-compliance.conf)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/networking.conf > /etc/osquery/DarkLightPacks/networking.conf)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/syslog.conf > /etc/osquery/DarkLightPacks/syslog.conf)
+#/etc/filebeat
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.full.yml > /etc/filebeat/filebeat.full.yml)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template-es2x.json > /etc/filebeat/filebeat.template-es2x.json)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template-es6x.json > /etc/filebeat/filebeat.template-es6x.json)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template.json > /etc/filebeat/filebeat.template.json)
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.yml > /etc/filebeat/filebeat.yml)
+#/etc/logrotate.d
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/logrotate.d/osquery > /etc/logrotate.d/osquery)
+#/etc/rsyslog.d
+execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/rsyslog.d/osquery_syslog.conf > /etc/rsyslog.d/osquery_syslog.conf)
 
 #CREATE FIFO
 execute 'create fifo for syslog' do
  action :run
  command 'mkfifo /var/osquery/syslog_pipe'
+end
+
+#SET SELINUX
+execute 'set selinux to permissive' do
+ action :run
+ command 'sed -i "s/enforcing/permissive/g" /etc/selinux/config'
 end
 
 #SERVICES
