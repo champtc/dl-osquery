@@ -1,0 +1,14 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/log/osquery/osqueryd.results.log
+    - /var/log/osquery/osqueryd.snapshots.log
+  json.message_key: log
+tags: ["osquery"]
+output.logstash:
+  enabled: true
+  hosts: ["xxx.xxx.xxx.xxx:5044"]
+  index: 'osquery'
+#logging.level: debug
+logging.to_files: true
+

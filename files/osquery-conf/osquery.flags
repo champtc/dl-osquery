@@ -1,0 +1,2 @@
+--enable_syslog
+--syslog_pipe_path=/var/osquery/syslog_pipe
