@@ -15,9 +15,14 @@ execute 'install osquery' do
  command 'yum -y install osquery'
 end
 
-execute 'download and install filebeat' do
+execute 'download filebeat' do
  action :run
- command 'curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.6.3-x86_64.rpm  && rpm -vi filebeat-5.6.3-x86_64.rpm'
+ command 'curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.6.3-x86_64.rpm'
+end
+
+execute 'install filebeat' do
+ action :run
+ command 'rpm -vi filebeat-5.6.3-x86_64.rpm'
 end
 
 #MOVE FILES
