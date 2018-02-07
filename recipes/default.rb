@@ -23,12 +23,12 @@ end
 #MOVE FILES
 execute 'copy filebeat directory' do
  action :run
- command 'cp -f /tmp/dl-osquery/files/filebeat/ /etc/filebeat'
+ command 'cp -f /tmp/chef-repo/cookbooks/dl-osquery/files/filebeat/ /etc/filebeat'
 end
 
 execute 'copy osquery directory' do
  action :run
- command 'cp -f /tmp/dl-osquery/files/osquery-conf/ /etc/osquery'
+ command 'cp -f /tmp/chef-repo/cookbooks/dl-osquery/files/osquery-conf/ /etc/osquery'
 end
 
 cookbook_file '/etc/logrotate.d/osquery' do
