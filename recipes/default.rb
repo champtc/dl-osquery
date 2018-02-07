@@ -48,24 +48,24 @@ directory '/etc/filebeat' do
 end
 
 #/etc/osquery
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/osquery.flags > /etc/osquery/osquery.flags)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/osquery.conf > /etc/osquery/osquery.conf)
-execute(#/etc/osquery/DarkLightPacks
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/fim.conf > /etc/osquery/DarkLightPacks/fim.conf)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/incident-response.ctci.conf > /etc/osquery/DarkLightPacks/incident-response.ctci.conf)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/it-compliance.conf > /etc/osquery/DarkLightPacks/it-compliance.conf)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/networking.conf > /etc/osquery/DarkLightPacks/networking.conf)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/syslog.conf > /etc/osquery/DarkLightPacks/syslog.conf)
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/osquery.flags > /etc/osquery/osquery.flags')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/osquery.conf > /etc/osquery/osquery.conf')
+#/etc/osquery/DarkLightPacks
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/fim.conf > /etc/osquery/DarkLightPacks/fim.conf')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/incident-response.ctci.conf > /etc/osquery/DarkLightPacks/incident-response.ctci.conf')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/it-compliance.conf > /etc/osquery/DarkLightPacks/it-compliance.conf')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/networking.conf > /etc/osquery/DarkLightPacks/networking.conf')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/syslog.conf > /etc/osquery/DarkLightPacks/syslog.conf')
 #/etc/filebeat
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.full.yml > /etc/filebeat/filebeat.full.yml)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template-es2x.json > /etc/filebeat/filebeat.template-es2x.json)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template-es6x.json > /etc/filebeat/filebeat.template-es6x.json)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template.json > /etc/filebeat/filebeat.template.json)
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.yml > /etc/filebeat/filebeat.yml)
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.full.yml > /etc/filebeat/filebeat.full.yml')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template-es2x.json > /etc/filebeat/filebeat.template-es2x.json')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template-es6x.json > /etc/filebeat/filebeat.template-es6x.json')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.template.json > /etc/filebeat/filebeat.template.json')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/filebeat/filebeat.yml > /etc/filebeat/filebeat.yml')
 #/etc/logrotate.d
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/logrotate.d/osquery > /etc/logrotate.d/osquery)
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/logrotate.d/osquery > /etc/logrotate.d/osquery')
 #/etc/rsyslog.d
-execute(curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/rsyslog.d/osquery_syslog.conf > /etc/rsyslog.d/osquery_syslog.conf)
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/rsyslog.d/osquery_syslog.conf > /etc/rsyslog.d/osquery_syslog.conf')
 
 #CREATE FIFO
 execute 'create fifo for syslog' do
