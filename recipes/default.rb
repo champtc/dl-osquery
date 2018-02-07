@@ -67,26 +67,9 @@ execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master
 #/etc/rsyslog.d
 execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/rsyslog.d/osquery_syslog.conf > /etc/rsyslog.d/osquery_syslog.conf')
 
-#FIND IP ADDRESS
-ruby_block "something" do
-    block do
-        #tricky way to load this Chef::Mixin::ShellOut utilities
-        Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)      
-        command = 'ips=($(hostname -I))
-
-for ip in "${ips[@]}"
-do
-    echo $ip
-done'
-        command_out = shell_out(command)
-        node.set['my_attribute'] = command_out.stdout
-    end
-    action :create
-end
-
 execute 'create fifo for syslog' do
  action :run
- command 'sed -i "s/xxx.xxx.xxx.xxx/'my_attribute'/g" /etc/filebeat/filebeat.yml'
+ command 'ip4=$(/sbin/ip -o -4 addr list eth0 | awk "{print $4}" | cut -d/ -f1) && sed -i "s/xxx.xxx.xxx.xxx/$ip4/g" /etc/filebeat/filebeat.yml'
 end
 
 #CREATE FIFO
