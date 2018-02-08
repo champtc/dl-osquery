@@ -80,6 +80,11 @@ execute 'set selinux to permissive' do
 end
 
 #SERVICES
+execute 'enable osqueryd service' do
+ action :run
+ command 'systemctl enable osqueryd'
+end
+
 execute 'enable rsyslog service' do
  action :run
  command 'systemctl enable rsyslog'
