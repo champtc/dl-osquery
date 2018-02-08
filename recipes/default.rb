@@ -67,11 +67,6 @@ execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master
 #/etc/rsyslog.d
 execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/rsyslog.d/osquery_syslog.conf > /etc/rsyslog.d/osquery_syslog.conf')
 
-execute 'create fifo for syslog' do
- action :run
- command 'ip4=$(/sbin/ip -o -4 addr list eth0 | awk "{print $4}" | cut -d/ -f1) && sed -i "s/xxx.xxx.xxx.xxx/$ip4/g" /etc/filebeat/filebeat.yml'
-end
-
 #CREATE FIFO
 execute 'create fifo for syslog' do
  action :run
