@@ -52,6 +52,7 @@ execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master
 execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/osquery.conf > /etc/osquery/osquery.conf')
 #/etc/osquery/DarkLightPacks
 execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/fim.conf > /etc/osquery/DarkLightPacks/fim.conf')
+execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/events.conf > /etc/osquery/DarkLightPacks/events.conf')
 execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/incident-response.ctci.conf > /etc/osquery/DarkLightPacks/incident-response.ctci.conf')
 execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/it-compliance.conf > /etc/osquery/DarkLightPacks/it-compliance.conf')
 execute('curl -L https://raw.githubusercontent.com/champtc/Infrastructure/master/osquery/linux-etc/osquery/DarkLightPacks/networking.conf > /etc/osquery/DarkLightPacks/networking.conf')
