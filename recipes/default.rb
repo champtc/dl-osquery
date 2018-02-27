@@ -91,6 +91,16 @@ execute 'enable rsyslog service' do
  command 'systemctl enable rsyslog'
 end
 
+execute 'stop auditd service' do
+ action :run
+ command 'service auditd stop'
+end
+
+execute 'disable auditd service' do
+ action :run
+ command 'systemctl disable auditd'
+end
+
 execute 'enable filebeat service' do
  action :run
  command 'systemctl enable filebeat'
